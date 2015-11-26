@@ -26,7 +26,6 @@ except:
     C:\Python27\Scripts>pip2.7.exe install "C:\Downloads\pygame-1.9.2a0-cp27-none-win_amd64.whl"
     steps=5000
 """ 
-import time
 
 def matrix_factorization(R, P, Q, K, steps=50, alpha=0.00002, beta=0.002):
     Q = Q.T
