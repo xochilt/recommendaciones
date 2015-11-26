@@ -11,7 +11,6 @@ except:
     exit(0)
 
 ###############################################################################
-
 """
 @INPUT:
     R     : a matrix to be factorized, dimension N x M
@@ -23,8 +22,6 @@ except:
     beta  : the regularization parameter
 @OUTPUT:
     the final matrices P and Q
-    C:\Python27\Scripts>pip2.7.exe install "C:\Downloads\pygame-1.9.2a0-cp27-none-win_amd64.whl"
-    steps=5000
 """ 
 
 def matrix_factorization(R, P, Q, K, steps=50, alpha=0.00002, beta=0.002):
