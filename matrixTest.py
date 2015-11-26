@@ -29,11 +29,10 @@ def matrizfac():
     cols=943#Size Movielens.
     rows=1682
     m=[] 
+    #Crea la matriz inicial de ceros.
     matriz = numpy.ones((rows, cols)) * 0
-    print 'matriz', matriz
-    print 'items',len(matriz)
-    print 'users',len(matriz[0])
     c=0
+    #Carga los ratings en la matriz de ceros.
     for i in listarat:
         matriz[ int(i[1]) -1 ][ int(i[0]) -1 ] = int(i[2])
         c=c+1             
@@ -109,9 +108,8 @@ def filmtrust():
 def moviedts(ini,end):
     movies={}
     for line in open('movies.dat'):
-      (id,title)=line.split('::')[0:2]
-      movies[id]=id
-
+        (id,title)=line.split('::')[0:2]
+        movies[id]=id
     items=[]
     users=[]
     listrain=[]
@@ -126,17 +124,14 @@ def moviedts(ini,end):
         items.append(movieid)
         if user in users:continue
         users.append(user)
-
-    print 'listrain', len(listrain)
-    print 'creando  datasets...'
+    #Creando  datasets...
     listest=[]
-
+    #Crea la lista de prueba en el rango ini,end.
     for j in  range(ini,end):
         print j
         listest.append(listrain[j])
-    
-    #eliminamos de la lista
-    #crear el dataset de entrenamiento. 
+    #eliminamos la lista de prueba del dataset inicial.
+    #crea el dataset de entrenamiento. 
     for k in listest:
         if k in listrain:
             listrain.remove(k)
@@ -156,15 +151,10 @@ def get_error(R,nR,users,items):
         for j in range(1,users):
             if R[i-1][j-1]==0.0:continue
             rmsed = ((R[i-1][j-1])-(nR[i-1][j-1]))**2
-            # print 'rmse',rmsed
-            
             maed= fabs((R[i-1][j-1])-(nR[i-1][j-1]))
             c=c+1.0
-            # print 'maed', format(maed, '.5f')
-            
             sumarmse=sumarmse+rmsed
             sumamae=sumamae+maed
-            
     t=(sumarmse/c)
     rmse = sqrt(t)
     mae=sumamae/c
