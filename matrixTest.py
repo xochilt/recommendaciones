@@ -3,7 +3,6 @@ import math
 from math import *
 import decimal
 
-
 #Funcion para trabajar con Movielens 100m
 def matrizfac():
     #Insertar los ratings.
@@ -73,14 +72,9 @@ def mat1m():
     for i in listarat:
         matriz[ int(i[1]) -1 ][ int(i[0]) -1 ] = int(i[2])
         c=c+1             
-    
-    print 'Total de ratings insertados: ', c
     #Guardar la matriz.
     numpy.savetxt('/Users/xochilt/mf/matrices2/movielens-r1base.txt',matriz,fmt='%1.2f', delimiter=',')
-    #Regresa la matriz y la lista de ratings de la matriz.
     return matriz, listarat
-
-
 
 #Funcion para crear las listas de Filmtrust.
 #No crea la matriz para factorizar.
@@ -99,8 +93,6 @@ def filmtrust():
      items.append(movieid)
      if user in users:continue
      users.append(user)
-     
-    print 'ratings...'
     numpy.savetxt('/Users/xochilt/mf/matrices2/ratings.txt',matriz,fmt='%1.2f', delimiter=',')
     return listarat, users,items
 
@@ -124,20 +116,16 @@ def moviedts(ini,end):
         items.append(movieid)
         if user in users:continue
         users.append(user)
-    #Creando  datasets...
     listest=[]
     #Crea la lista de prueba en el rango ini,end.
     for j in  range(ini,end):
         print j
         listest.append(listrain[j])
-    #eliminamos la lista de prueba del dataset inicial.
     #crea el dataset de entrenamiento. 
     for k in listest:
         if k in listrain:
             listrain.remove(k)
-    #Devuelve el conjunto de datos de entrenamiento y de prueba.
     return listrain,listest
- 
  
 #Funcion para obtener el error RMSE y  MAE.
 #Utiliza la matriz factorizada con los datos de prueba
@@ -159,7 +147,6 @@ def get_error(R,nR,users,items):
     rmse = sqrt(t)
     mae=sumamae/c
     print 'c',c
-    #Devuelve el error calculado.
     return rmse,mae  
 
 #funcion para salvar la matriz factorizada.
@@ -175,7 +162,6 @@ def matmusic(music):
     for i in music:
         if i[1] in items:continue
         items.append(i[1])        
-
     items.sort()
     cols=42 #Size dataset.
     rows=len(items)
@@ -184,11 +170,9 @@ def matmusic(music):
     #Agregamos los ratings a la matriz inicial.
     for i in music:
         mat[i[1]-1][i[0]-1]=i[2]
-        
-    #Creando el diccionario para utilizarlo en las recomendaciones.
+    #Creando el diccionario.
     pref = dict([(t[0],{}) for t in music])
     for t in music:
-        pref[t[0]][t[1]]=float(t[2])
-    #Devuelve las preferencias de los usuarios, la matriz de ratings.
+        pref[t[0]][t[1]]=float(t[2]).
     return pref,mat
 
