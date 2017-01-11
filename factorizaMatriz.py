@@ -1,16 +1,5 @@
 #!/usr/bin/python
-#
-# Created by Albert Au Yeung (2010)
-#
-# An implementation of matrix factorization
-#
-try:
-    import numpy
-except:
-    print "This implementation requires the numpy module."
-    exit(0)
-
-###############################################################################
+import numpy
 """
 @INPUT:
     R     : a matrix to be factorized, dimension N x M
